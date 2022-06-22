@@ -5,24 +5,28 @@ using UnityEngine;
 public class life : MonoBehaviour
 {
     public int life_num;
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+
     }
     public void receiveDamage(int damage)
     {
         life_num -= damage;
-        Debug.Log("damage:"+damage);
+            
+
         if (life_num<=0)
         {
-            Debug.Log("dead!");
-            Destroy(gameObject);
+            animator.SetBool("isDead", true);
+            Destroy(gameObject,1f);
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        else
+        {
+            animator.SetBool("isHurt", true);
+        }
     }
 
 }
