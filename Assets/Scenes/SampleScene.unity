@@ -3277,7 +3277,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6414342, y: 0.24777317}
+  m_Size: {x: 0.6414342, y: 0.64}
   m_EdgeRadius: 0
 --- !u!212 &566551313
 SpriteRenderer:
@@ -26577,6 +26577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  arrow: {fileID: 2435852772056262010, guid: d622e7c7e2a6fed4b8d563b866f579a9, type: 3}
 --- !u!1 &1842433340
 GameObject:
   m_ObjectHideFlags: 0
