@@ -16,12 +16,12 @@ public class life : MonoBehaviour
     public void receiveDamage(int damage)
     {
         life_num -= damage;
-            
+
 
         if (life_num<=0)
         {
             animator.SetBool("isDead", true);
-            Destroy(gameObject,1f);
+            Destroy(gameObject,0.6f);
         }
         else
         {

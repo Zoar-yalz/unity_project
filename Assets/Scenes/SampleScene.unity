@@ -2441,6 +2441,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1330398315}
     m_Modifications:
+    - target: {fileID: 1485368393253192368, guid: ca8d94847c3366644aa85f9d7234b929, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1753359327199732801, guid: ca8d94847c3366644aa85f9d7234b929, type: 3}
       propertyPath: m_Name
       value: enemy
@@ -2471,7 +2475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7044682693010029958, guid: ca8d94847c3366644aa85f9d7234b929, type: 3}
       propertyPath: life_num
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9179798218974528731, guid: ca8d94847c3366644aa85f9d7234b929, type: 3}
       propertyPath: m_RootOrder
@@ -2479,11 +2483,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9179798218974528731, guid: ca8d94847c3366644aa85f9d7234b929, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 9179798218974528731, guid: ca8d94847c3366644aa85f9d7234b929, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 9179798218974528731, guid: ca8d94847c3366644aa85f9d7234b929, type: 3}
       propertyPath: m_LocalPosition.x
