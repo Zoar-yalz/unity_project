@@ -7,7 +7,7 @@ public class TalkButton : MonoBehaviour
     //public GameObject Button;
     public GameObject talkUI;
 
-    public bool isActive;
+    public static bool isActive;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -22,7 +22,7 @@ public class TalkButton : MonoBehaviour
 
     private void Update()
     {
-        if (isActive && Input.GetKeyDown(KeyCode.J) && !DialogSystem.goingOn)
+        if (isActive && Input.GetKeyDown(KeyCode.L) && !DialogSystem.goingOn)
         {
             GameObject.Find("GameController").SendMessage("ResetIdx");
             talkUI.SetActive(true);

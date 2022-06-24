@@ -28,6 +28,7 @@ public class DialogSystem : MonoBehaviour
 
     public static bool goingOn = false;
     bool playing = false;
+    public static bool beforebattle = true;
     void Start()
     {
         GetTextFromFile();
@@ -37,15 +38,18 @@ public class DialogSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K) && index==textList.Count)
+        if (Input.GetKeyDown(KeyCode.K) && index == textList.Count)
         {
             dialogbox.SetActive(false);
             index = 0;
             goingOn = false;
             float sp = 3.0f;
             GameObject.Find("Player").SendMessage("setSpeed", sp);
+            if (beforebattle)
+                GameObject.Find("GameController").SendMessage("manifest");
+            beforebattle = false;
         }
-        else if(Input.GetKeyDown(KeyCode.K) && !playing && goingOn)
+        else if (Input.GetKeyDown(KeyCode.K) && !playing && goingOn)
         {
             //textLabel.text = textList[index]+"\n"+textList[index+1];
             //index+=2;
@@ -58,8 +62,8 @@ public class DialogSystem : MonoBehaviour
         textList.Clear();
         index = 0;
 
-        var lineData=textFile.text.Split('\n');
-        foreach(var line in lineData)
+        var lineData = textFile.text.Split('\n');
+        foreach (var line in lineData)
         {
             textList.Add(line);
         }
@@ -71,7 +75,7 @@ public class DialogSystem : MonoBehaviour
         goingOn = true;
         StartCoroutine(SetTextUI());
         float sp = 0.0f;
-        GameObject.Find("Player").SendMessage("setSpeed",sp);
+        GameObject.Find("Player").SendMessage("setSpeed", sp);
     }
 
     public IEnumerator SetTextUI()
@@ -86,9 +90,9 @@ public class DialogSystem : MonoBehaviour
         else
             faceImage.sprite = headShotB;
 
-        for (int i=0;i<textList[index+1].Length;i++)
+        for (int i = 0; i < textList[index + 1].Length; i++)
         {
-            textLabel.text += textList[index+1][i];
+            textLabel.text += textList[index + 1][i];
             if (textList[index + 1][i] == ' ')
             {
                 sfx.Play();
@@ -99,7 +103,8 @@ public class DialogSystem : MonoBehaviour
             //    sfx.Play();
         }
         sfx.Play();
-        index +=2;
+        index += 2;
         playing = false;
     }
 }
+
