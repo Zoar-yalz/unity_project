@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class NpcCntroller : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     GameObject player;
     Transform thistf, playertf;
@@ -13,7 +13,7 @@ public class NpcCntroller : MonoBehaviour
     Vector3 point1, point2;//在point1和point2之间来回巡逻
     public bool target;//true表示点2为目标，false表示点1
     float moveSpeed;
-
+    float time = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +35,7 @@ public class NpcCntroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         //Chase();
         if ((player.transform.position - transform.position).magnitude < 1)
         {
@@ -50,12 +51,21 @@ public class NpcCntroller : MonoBehaviour
     public void Chase()
     {
         thisrb.velocity = Vector3.Normalize(playertf.position - thistf.position) * 2f;
+        if ((player.transform.position - transform.position).magnitude < 0.1)
+        {
+            time += Time.deltaTime;
+            if (time >= 0.5f)
+            {
+                GameObject.Find("Player").SendMessage("getDamage");
+                time = 0;
+            }
+        }
     }
 
     public void Idle()
     {
         //如果不在原有路径，则先返回（0，0，0）
-        
+
 
         if (target)
         {
@@ -83,7 +93,7 @@ public abstract class State
         stateOn = false;
     }
     public abstract void EnterState();
-    public abstract void UpdateState(NpcCntroller enemy);
+    public abstract void UpdateState(EnemyController enemy);
     public abstract void ExitState();
 }
 
@@ -100,7 +110,7 @@ public class IdleState : State
         stateOn = true;
     }
 
-    public override void UpdateState(NpcCntroller enemy)
+    public override void UpdateState(EnemyController enemy)
     {
         enemy.Idle();
     }
@@ -124,7 +134,7 @@ public class ChaseState : State
         stateOn = true;
     }
 
-    public override void UpdateState(NpcCntroller enemy)
+    public override void UpdateState(EnemyController enemy)
     {
         enemy.Chase();
     }
@@ -199,7 +209,7 @@ public class StateManager
     }
 
     //状态进行
-    public void KeepState(NpcCntroller enemy)
+    public void KeepState(EnemyController enemy)
     {
         if (currentState != null)
         {
