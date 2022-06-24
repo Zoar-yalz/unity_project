@@ -4,21 +4,29 @@ using UnityEngine;
 
 public class FacingCamera : MonoBehaviour
 {
-    Transform[] childs;
+    List<Transform> childs;
     void Start()
     {
-        childs = new Transform[transform.childCount];
+        childs = new List<Transform>();
         for (int i = 0; i < transform.childCount; i++)
         {
-            childs[i] = transform.GetChild(i);
+            childs.Add(transform.GetChild(i));
         }
     }
-
+    void AddComponent(Transform transform)
+    {
+        childs.Add(transform);
+    }
     void Update()
     {
-        for (int i = 0; i < childs.Length; i++)
+        for (int i = childs.Count - 1; i >= 0; i--)
         {
-            childs[i].rotation = Camera.main.transform.rotation;
+            if (childs[i] == null)
+                childs.RemoveAt(i); // O(n)
+            else
+            {
+                childs[i].rotation = Camera.main.transform.rotation;
+            }
         }
     }
 }

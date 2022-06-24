@@ -42,8 +42,10 @@ public class DialogSystem : MonoBehaviour
             dialogbox.SetActive(false);
             index = 0;
             goingOn = false;
+            float sp = 3.0f;
+            GameObject.Find("Player").SendMessage("setSpeed", sp);
         }
-        else if(Input.GetKeyDown(KeyCode.K) && !playing)
+        else if(Input.GetKeyDown(KeyCode.K) && !playing && goingOn)
         {
             //textLabel.text = textList[index]+"\n"+textList[index+1];
             //index+=2;
@@ -68,6 +70,8 @@ public class DialogSystem : MonoBehaviour
         index = 0;
         goingOn = true;
         StartCoroutine(SetTextUI());
+        float sp = 0.0f;
+        GameObject.Find("Player").SendMessage("setSpeed",sp);
     }
 
     public IEnumerator SetTextUI()
